@@ -1,0 +1,139 @@
+from tkinter import *
+root = Tk()
+root.title("Calculator")
+a = None
+b = None
+c = None
+flag = None
+
+def placing(x):
+    text1.insert(END,x)
+
+def sum():
+    global a,b,flag
+    a = text1.get()
+    text1.delete(0,END)
+    flag = 1
+
+def dif():
+    global a,b,flag
+    a = text1.get()
+    text1.delete(0,END)
+    flag = 2
+
+def product():
+    global a,b,flag
+    a = text1.get()
+    text1.delete(0,END)
+    flag = 3
+
+def div():
+    global a,b,flag
+    a = text1.get()
+    text1.delete(0,END)
+    flag = 4
+
+def power():
+    global a,b,flag
+    a = text1.get()
+    text1.delete(0,END)
+    flag = 5
+
+def clear():
+    text1.delete(0,END)
+    flag = None
+
+def clean():
+    x = text1.get()
+    x = x[0:-1]
+    text1.delete(0,END)
+    text1.insert(END,x)
+
+def equal():
+    global a,b,c,flag
+    b = text1.get()
+    text1.delete(0,END)
+    if flag==None:
+        text1.insert(END,b)
+    elif(flag == 1):
+        c = float(a)+float(b)
+        text1.insert(END,c)
+    elif(flag == 2):
+        c = float(a)-float(b)
+        text1.insert(END,c)
+    elif(flag == 3):
+        c = float(a)*float(b)
+        text1.insert(END,c)
+    elif(flag == 4):
+        c = float(a)/float(b)
+        text1.insert(END,c)
+    elif(flag == 5):
+        c = pow(float(a),int(b))
+        text1.insert(END,c)
+
+text1 = Entry(root,width='38',justify="right")
+text1.place(x=10,y=10)
+
+bc = Button(root,text="c",width='6',command=clear)
+bc.place(x=10,y=40)
+
+bx = Button(root,text="<-",width='6',command=clean)
+bx.place(x=70,y=40)
+
+bmul = Button(root,text="*",width='6',command=product)
+bmul.place(x=130,y=40)
+
+bsub = Button(root,text="-",width='6',command=dif)
+bsub.place(x=190,y=40)
+
+b7 = Button(root,text="7",width='6',command=lambda:placing(7))
+b7.place(x=10,y=80)
+
+b8 = Button(root,text="8",width='6',command=lambda:placing(8))
+b8.place(x=70,y=80)
+
+b9 = Button(root,text="9",width='6',command=lambda:placing(9))
+b9.place(x=130,y=80)
+
+badd = Button(root,text="+",width='6',command=sum)
+badd.place(x=190,y=80)
+
+b4 = Button(root,text="4",width='6',command=lambda:placing(4))
+b4.place(x=10,y=120)
+
+b5 = Button(root,text="5",width='6',command=lambda:placing(5))
+b5.place(x=70,y=120)
+
+b6 = Button(root,text="6",width='6',command=lambda:placing(6))
+b6.place(x=130,y=120)
+
+bdiv = Button(root,text="/",width='6',command=div)
+bdiv.place(x=190,y=120)
+
+b1 = Button(root,text="1",width='6',command=lambda:placing(1))
+b1.place(x=10,y=160)
+
+b2 = Button(root,text="2",width='6',command=lambda:placing(2))
+b2.place(x=70,y=160)
+
+b3 = Button(root,text="3",width='6',command=lambda:placing(3))
+b3.place(x=130,y=160)
+
+bpow = Button(root,text="pow",width='6',command=power)
+bpow.place(x=190,y=160)
+
+b0 = Button(root,text="0",width='6',command=lambda:placing(0))
+b0.place(x=10,y=200)
+
+bdot = Button(root,text=".",width='6',command=lambda:placing('.'))
+bdot.place(x=70,y=200)
+
+bequal = Button(root,text="=",width='6',command=equal)
+bequal.place(x=130,y=200)
+
+bclose = Button(root,text="close",width='6',command=root.destroy)
+bclose.place(x=190,y=200)
+
+root.geometry("250x240")
+root.configure(bg="black")
+root.mainloop()
